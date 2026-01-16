@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Login Form Fill</title>
+</head>
+<body>
+    <h1>Browser Login Test - Fixed Method</h1>
+    <p>This page demonstrates the JavaScript injection method for filling the login form.</p>
+    
+    <script>
+        // This script can be injected into the browser console
+        // to fill and submit the login form
+        
+        function fillLoginForm(email, password) {
+            console.log('Starting login form fill...');
+            
+            // Find inputs by ID (most reliable method)
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginButton = document.querySelector('button[type="submit"]');
+            
+            if (!emailInput) {
+                console.error('Email input not found');
+                return { success: false, error: 'Email input not found' };
+            }
+            
+            if (!passwordInput) {
+                console.error('Password input not found');
+                return { success: false, error: 'Password input not found' };
+            }
+            
+            if (!loginButton) {
+                console.error('Login button not found');
+                return { success: false, error: 'Login button not found' };
+            }
+            
+            // Fill email with proper event dispatching
+            emailInput.focus();
+            emailInput.value = email;
+            emailInput.dispatchEvent(new Event('input', { bubbles: true }));
+            emailInput.dispatchEvent(new Event('change', { bubbles: true }));
+            emailInput.blur();
+            
+            console.log('Email filled:', emailInput.value);
+            
+            // Small delay to ensure React state updates
+            setTimeout(() => {
+                // Fill password
+                passwordInput.focus();
+                passwordInput.value = password;
+                passwordInput.dispatchEvent(new Event('input', { bubbles: true }));
+                passwordInput.dispatchEvent(new Event('change', { bubbles: true }));
+                passwordInput.blur();
+                
+                console.log('Password filled');
+                
+                // Wait a bit more before submitting
+                setTimeout(() => {
+                    console.log('Submitting form...');
+                    loginButton.focus();
+                    loginButton.click();
+                    console.log('Form submitted');
+                }, 500);
+            }, 300);
+            
+            return { success: true, message: 'Form filled and submitted' };
+        }
+        
+        // Usage:
+        // fillLoginForm('testuser1765706376@test.com', 'testpass123');
+    </script>
+</body>
+</html>
+
+

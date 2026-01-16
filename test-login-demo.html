@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MediTrack Login Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .success { color: green; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>MediTrack Login & Registration Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Instructions</h2>
+        <p>Open the browser and navigate to:</p>
+        <ul>
+            <li><strong>Login:</strong> <a href="http://localhost:3000/login" target="_blank">http://localhost:3000/login</a></li>
+            <li><strong>Register:</strong> <a href="http://localhost:3000/register" target="_blank">http://localhost:3000/register</a></li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Credentials</h2>
+        <p><strong>Email:</strong> testuser1765706376@test.com</p>
+        <p><strong>Password:</strong> testpass123</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Expected Flow</h2>
+        <ol>
+            <li>Login with credentials above</li>
+            <li>Should redirect to: <code>/pharmacy/medicines</code></li>
+            <li>Should see products/medicines page</li>
+        </ol>
+    </div>
+</body>
+</html>

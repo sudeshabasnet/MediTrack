@@ -1,0 +1,209 @@
+{
+  "tech_stack": [
+    "Java 17",
+    "Spring Boot 3.2.0",
+    "React 18.2.0",
+    "Vite 5.0.8",
+    "MySQL",
+    "JWT",
+    "Tailwind CSS",
+    "Cloudinary",
+    "SMTP (Gmail)",
+    "eSewa Payment Gateway",
+    "Python Flask (AI Module)"
+  ],
+  "features": [
+    {
+      "name": "User Authentication",
+      "description": "JWT-based authentication with role-based access control (ADMIN, USER, PHARMACY, SUPPLIER)",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/AuthController.java",
+        "backend/src/main/java/com/meditrack/service/JwtService.java",
+        "backend/src/main/java/com/meditrack/security/JwtAuthenticationFilter.java",
+        "frontend/src/pages/public/LoginPage.jsx",
+        "frontend/src/contexts/AuthContext.jsx",
+        "frontend/src/components/auth/ProtectedRoute.jsx"
+      ]
+    },
+    {
+      "name": "Email Verification",
+      "description": "Email verification system with SMTP, verification tokens, and email sending",
+      "files": [
+        "backend/src/main/java/com/meditrack/entity/EmailVerificationToken.java",
+        "backend/src/main/java/com/meditrack/service/EmailService.java",
+        "backend/src/main/java/com/meditrack/service/UserService.java",
+        "backend/src/main/java/com/meditrack/controller/AuthController.java"
+      ]
+    },
+    {
+      "name": "User Registration",
+      "description": "Multi-role registration (General User, Pharmacy, Supplier, Admin) with conditional fields",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/AuthController.java",
+        "backend/src/main/java/com/meditrack/service/UserService.java",
+        "frontend/src/pages/public/RegisterPage.jsx"
+      ]
+    },
+    {
+      "name": "Legal Document Verification",
+      "description": "Legal document upload for pharmacies and suppliers with admin verification workflow",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/ImageController.java",
+        "backend/src/main/java/com/meditrack/controller/AdminController.java",
+        "backend/src/main/java/com/meditrack/service/CloudinaryService.java",
+        "backend/src/main/java/com/meditrack/entity/User.java"
+      ]
+    },
+    {
+      "name": "Medicine Management",
+      "description": "CRUD operations for medicines with categories, stock tracking, expiry dates, and batch numbers",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/AdminController.java",
+        "backend/src/main/java/com/meditrack/controller/SupplierController.java",
+        "backend/src/main/java/com/meditrack/service/MedicineService.java",
+        "backend/src/main/java/com/meditrack/entity/Medicine.java",
+        "frontend/src/pages/admin/MedicineManagement.jsx",
+        "frontend/src/pages/admin/AddEditMedicine.jsx",
+        "frontend/src/pages/supplier/SupplierMedicineManagement.jsx"
+      ]
+    },
+    {
+      "name": "Medicine Browsing",
+      "description": "Browse medicines with search, filtering, pagination, and detailed product pages",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/PharmacyController.java",
+        "frontend/src/pages/pharmacy/PharmacyMedicineBrowser.jsx",
+        "frontend/src/pages/pharmacy/MedicineDetailPage.jsx"
+      ]
+    },
+    {
+      "name": "Shopping Cart",
+      "description": "Add to cart, update quantities, remove items with purchase limitations for general users",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/CartController.java",
+        "backend/src/main/java/com/meditrack/entity/CartItem.java",
+        "frontend/src/pages/user/CartPage.jsx"
+      ]
+    },
+    {
+      "name": "Purchase Limitations",
+      "description": "Enforce purchase limits for general users (max 5 units per medicine, max 20 total items)",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/CartController.java"
+      ]
+    },
+    {
+      "name": "Order Management",
+      "description": "Create orders, view order history, order details with status tracking",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/OrderController.java",
+        "backend/src/main/java/com/meditrack/entity/Order.java",
+        "frontend/src/pages/user/OrdersPage.jsx",
+        "frontend/src/pages/user/OrderDetailsPage.jsx"
+      ]
+    },
+    {
+      "name": "Payment Processing",
+      "description": "eSewa payment gateway integration and Cash on Delivery (COD) support",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/PaymentController.java",
+        "frontend/src/pages/user/CheckoutPage.jsx",
+        "frontend/src/pages/user/PaymentSuccessPage.jsx",
+        "frontend/src/pages/user/PaymentFailurePage.jsx"
+      ]
+    },
+    {
+      "name": "Email Notifications",
+      "description": "Automated email notifications for registration, login, orders, and verification status",
+      "files": [
+        "backend/src/main/java/com/meditrack/service/EmailService.java",
+        "backend/src/main/java/com/meditrack/controller/AuthController.java",
+        "backend/src/main/java/com/meditrack/controller/OrderController.java"
+      ]
+    },
+    {
+      "name": "Image Upload",
+      "description": "Cloudinary integration for medicine images and legal document uploads",
+      "files": [
+        "backend/src/main/java/com/meditrack/service/CloudinaryService.java",
+        "backend/src/main/java/com/meditrack/controller/ImageController.java"
+      ]
+    },
+    {
+      "name": "Expiry Prediction",
+      "description": "Python AI module integration for medicine expiry prediction and stock recommendations",
+      "files": [
+        "backend/src/main/java/com/meditrack/service/PredictionService.java",
+        "backend/src/main/java/com/meditrack/controller/ReportController.java",
+        "ai-module/app.py"
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "description": "Admin dashboard with statistics, medicine management, user management, and reports",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/AdminController.java",
+        "frontend/src/pages/admin/AdminDashboard.jsx",
+        "frontend/src/pages/admin/UserManagement.jsx",
+        "frontend/src/pages/admin/ReportsPage.jsx"
+      ]
+    },
+    {
+      "name": "Pharmacy Dashboard",
+      "description": "Pharmacy dashboard for browsing medicines and managing orders",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/PharmacyController.java",
+        "frontend/src/pages/pharmacy/PharmacyDashboard.jsx"
+      ]
+    },
+    {
+      "name": "Supplier Dashboard",
+      "description": "Supplier dashboard for managing medicines and inventory",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/SupplierController.java",
+        "frontend/src/pages/supplier/SupplierDashboard.jsx"
+      ]
+    },
+    {
+      "name": "User Dashboard",
+      "description": "User dashboard with order history, popular medicines, and recent orders",
+      "files": [
+        "frontend/src/pages/user/UserDashboard.jsx",
+        "frontend/src/pages/user/ProfilePage.jsx"
+      ]
+    },
+    {
+      "name": "Reviews System",
+      "description": "Medicine review and rating system",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/ReviewController.java",
+        "backend/src/main/java/com/meditrack/entity/Review.java",
+        "frontend/src/components/common/ReviewComponent.jsx"
+      ]
+    },
+    {
+      "name": "Activity Logging",
+      "description": "System activity logging for audit trails",
+      "files": [
+        "backend/src/main/java/com/meditrack/entity/ActivityLog.java",
+        "backend/src/main/java/com/meditrack/service/ActivityLogService.java",
+        "backend/src/main/java/com/meditrack/annotation/LogActivity.java"
+      ]
+    },
+    {
+      "name": "Reports and Analytics",
+      "description": "Stock reports, expiry reports, category distribution, and supplier summaries",
+      "files": [
+        "backend/src/main/java/com/meditrack/controller/ReportController.java",
+        "frontend/src/pages/admin/ReportsPage.jsx"
+      ]
+    },
+    {
+      "name": "Shared Layout",
+      "description": "Consistent navigation and footer across all logged-in pages",
+      "files": [
+        "frontend/src/components/layout/AppLayout.jsx"
+      ]
+    }
+  ]
+}

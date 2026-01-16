@@ -1,0 +1,151 @@
+{
+  "projectName": "MediTrack",
+  "application": {
+    "frontendUrl": "http://localhost:3000",
+    "backendUrl": "http://localhost:8081",
+    "baseUrl": "http://localhost:3000",
+    "type": "web-application"
+  },
+  "authentication": {
+    "type": "jwt",
+    "loginEndpoint": "/api/auth/login",
+    "loginMethod": "POST",
+    "loginPayload": {
+      "email": "user@test.com",
+      "password": "user123"
+    },
+    "tokenPath": "token",
+    "headerName": "Authorization",
+    "headerFormat": "Bearer {token}"
+  },
+  "testUsers": [
+    {
+      "role": "ADMIN",
+      "email": "admin@test.com",
+      "password": "admin123",
+      "dashboard": "/admin/dashboard"
+    },
+    {
+      "role": "USER",
+      "email": "user@test.com",
+      "password": "user123",
+      "dashboard": "/user/dashboard"
+    },
+    {
+      "role": "SUPPLIER",
+      "email": "supplier@test.com",
+      "password": "supplier123",
+      "dashboard": "/supplier/dashboard"
+    },
+    {
+      "role": "PHARMACY",
+      "email": "pharmacy@test.com",
+      "password": "pharmacy123",
+      "dashboard": "/pharmacy/dashboard"
+    }
+  ],
+  "testScenarios": [
+    {
+      "name": "User Registration - General User",
+      "description": "Test registration as General User with hidden organization/license fields",
+      "priority": "high",
+      "steps": [
+        "Navigate to /register",
+        "Select 'General User' role",
+        "Verify organization name field is hidden",
+        "Verify license number field is hidden",
+        "Fill required fields and submit",
+        "Verify registration success"
+      ]
+    },
+    {
+      "name": "User Login",
+      "description": "Test user login and role-based redirect",
+      "priority": "high",
+      "steps": [
+        "Navigate to /login",
+        "Enter credentials",
+        "Submit login",
+        "Verify JWT token received",
+        "Verify redirect to appropriate dashboard"
+      ]
+    },
+    {
+      "name": "Add to Cart",
+      "description": "Test adding medicine to cart",
+      "priority": "high",
+      "steps": [
+        "Login as USER",
+        "Browse medicines",
+        "Add medicine to cart",
+        "Verify item in cart"
+      ]
+    },
+    {
+      "name": "Place Order",
+      "description": "Test complete order placement flow",
+      "priority": "high",
+      "steps": [
+        "Login as USER",
+        "Add items to cart",
+        "Navigate to checkout",
+        "Fill shipping information",
+        "Select payment method",
+        "Place order",
+        "Verify order created"
+      ]
+    },
+    {
+      "name": "eSewa Payment",
+      "description": "Test eSewa payment integration",
+      "priority": "medium",
+      "steps": [
+        "Login as USER",
+        "Add items to cart",
+        "Go to checkout",
+        "Select eSewa payment",
+        "Verify payment form generated"
+      ]
+    },
+    {
+      "name": "Submit Review",
+      "description": "Test submitting medicine review",
+      "priority": "medium",
+      "steps": [
+        "Login as USER",
+        "Navigate to medicine details",
+        "Submit review with rating",
+        "Verify review appears"
+      ]
+    }
+  ],
+  "apiEndpoints": {
+    "auth": {
+      "register": "POST /api/auth/register",
+      "login": "POST /api/auth/login",
+      "profile": "GET /api/auth/profile"
+    },
+    "cart": {
+      "get": "GET /api/cart",
+      "add": "POST /api/cart",
+      "update": "PUT /api/cart/{id}",
+      "remove": "DELETE /api/cart/{id}",
+      "summary": "GET /api/cart/summary"
+    },
+    "orders": {
+      "create": "POST /api/orders",
+      "list": "GET /api/orders",
+      "details": "GET /api/orders/{id}"
+    },
+    "payment": {
+      "esewa": "POST /api/payment/esewa"
+    },
+    "reviews": {
+      "list": "GET /api/reviews/medicine/{id}",
+      "create": "POST /api/reviews",
+      "average": "GET /api/reviews/medicine/{id}/average"
+    }
+  }
+}
+
+

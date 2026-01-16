@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "MediTrack",
+    "projectPath": "/home/saurav/Documents/Final year Projects/sudesha/MediTrack",
+    "testIds": [],
+    "additionalInstruction": "Test all PRD features including: email verification, legal document upload, purchase limitations, order management, payment processing, and all user roles (ADMIN, USER, PHARMACY, SUPPLIER)",
+    "envs": {
+      "API_KEY": "sk-user-QJzUHbU3kE6zifJLFZKQmqElzKJhrvg-JJhWp80vLsyF2Y_2w-eEIPkVhVz1oWYWf-WMvVWo2kz512ZwhnAUn6eW0JUQwR9h19yCXzjkbM6OuVp8ujToKGP1ifKTTa5gXHQ"
+    }
+  },
+  "proxy": "http://1490b192-23c7-4a64-8632-e0dee02daefc:snyUJCs6zCXDibq0kKgoHs0wIsnHGsYm@tun.testsprite.com:8080"
+}

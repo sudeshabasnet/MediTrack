@@ -1,0 +1,305 @@
+{
+  "projectName": "MediTrack - Medicine Stock and Distribution System",
+  "applicationUrls": {
+    "frontend": "http://localhost:3000",
+    "backend": "http://localhost:8081",
+    "apiBase": "http://localhost:8081/api"
+  },
+  "authentication": {
+    "type": "JWT",
+    "loginEndpoint": "/api/auth/login",
+    "loginPayload": {
+      "email": "user@test.com",
+      "password": "user123"
+    },
+    "tokenPath": "token",
+    "headerName": "Authorization",
+    "headerFormat": "Bearer {token}"
+  },
+  "testUsers": [
+    {
+      "role": "ADMIN",
+      "email": "admin@test.com",
+      "password": "admin123",
+      "dashboard": "/admin/dashboard"
+    },
+    {
+      "role": "USER",
+      "email": "user@test.com",
+      "password": "user123",
+      "dashboard": "/user/dashboard"
+    },
+    {
+      "role": "SUPPLIER",
+      "email": "supplier@test.com",
+      "password": "supplier123",
+      "dashboard": "/supplier/dashboard"
+    },
+    {
+      "role": "PHARMACY",
+      "email": "pharmacy@test.com",
+      "password": "pharmacy123",
+      "dashboard": "/pharmacy/dashboard"
+    }
+  ],
+  "testScenarios": [
+    {
+      "id": "TC-001",
+      "name": "User Registration - General User",
+      "description": "Test registration as General User with hidden organization/license fields",
+      "steps": [
+        "Navigate to /register",
+        "Select 'General User' role",
+        "Verify organization name field is hidden",
+        "Verify license number field is hidden",
+        "Fill required fields (name, email, phone, password, address)",
+        "Submit registration",
+        "Verify registration success",
+        "Verify redirect to login page"
+      ],
+      "expectedResults": [
+        "Organization name field not visible",
+        "License number field not visible",
+        "Registration succeeds",
+        "User can login with new credentials"
+      ]
+    },
+    {
+      "id": "TC-002",
+      "name": "User Registration - Supplier",
+      "description": "Test registration as Supplier with all fields visible",
+      "steps": [
+        "Navigate to /register",
+        "Select 'Supplier' role",
+        "Verify all fields are visible",
+        "Fill all required fields",
+        "Submit registration",
+        "Verify registration success"
+      ]
+    },
+    {
+      "id": "TC-003",
+      "name": "User Login",
+      "description": "Test user login and role-based redirect",
+      "steps": [
+        "Navigate to /login",
+        "Enter valid credentials",
+        "Submit login form",
+        "Verify JWT token is received",
+        "Verify redirect to appropriate dashboard based on role"
+      ]
+    },
+    {
+      "id": "TC-004",
+      "name": "Add to Cart",
+      "description": "Test adding medicine to cart",
+      "steps": [
+        "Login as USER",
+        "Navigate to medicine browsing page",
+        "Click 'Add to Cart' on a medicine",
+        "Verify success message",
+        "Navigate to cart page",
+        "Verify medicine appears in cart"
+      ]
+    },
+    {
+      "id": "TC-005",
+      "name": "Update Cart Quantity",
+      "description": "Test updating cart item quantity",
+      "steps": [
+        "Login as USER",
+        "Navigate to cart page",
+        "Increase quantity of an item",
+        "Verify total amount updates",
+        "Decrease quantity",
+        "Verify total amount updates",
+        "Set quantity to 0",
+        "Verify item is removed"
+      ]
+    },
+    {
+      "id": "TC-006",
+      "name": "Place Order",
+      "description": "Test order placement flow",
+      "steps": [
+        "Login as USER",
+        "Add items to cart",
+        "Navigate to checkout",
+        "Fill shipping information",
+        "Select payment method",
+        "Submit order",
+        "Verify order is created",
+        "Verify cart is cleared",
+        "Verify redirect to orders page"
+      ]
+    },
+    {
+      "id": "TC-007",
+      "name": "eSewa Payment Integration",
+      "description": "Test eSewa payment flow",
+      "steps": [
+        "Login as USER",
+        "Add items to cart",
+        "Navigate to checkout",
+        "Select 'eSewa' payment method",
+        "Fill shipping information",
+        "Submit order",
+        "Verify eSewa payment form is generated",
+        "Verify payment data is correct"
+      ]
+    },
+    {
+      "id": "TC-008",
+      "name": "Submit Review",
+      "description": "Test submitting a medicine review",
+      "steps": [
+        "Login as USER",
+        "Navigate to medicine details page",
+        "Click 'Write Review'",
+        "Select rating (1-5 stars)",
+        "Enter review comment",
+        "Submit review",
+        "Verify review appears in reviews list",
+        "Verify average rating updates"
+      ]
+    },
+    {
+      "id": "TC-009",
+      "name": "View Reviews",
+      "description": "Test viewing medicine reviews",
+      "steps": [
+        "Navigate to medicine details page",
+        "Scroll to reviews section",
+        "Verify reviews are displayed",
+        "Verify average rating is shown",
+        "Verify review count is correct"
+      ]
+    },
+    {
+      "id": "TC-010",
+      "name": "Search Medicines",
+      "description": "Test medicine search functionality",
+      "steps": [
+        "Login as USER or PHARMACY",
+        "Navigate to medicine browsing page",
+        "Enter search term",
+        "Verify search results update",
+        "Verify results match search term"
+      ]
+    },
+    {
+      "id": "TC-011",
+      "name": "Filter Medicines",
+      "description": "Test medicine filtering",
+      "steps": [
+        "Login as USER or PHARMACY",
+        "Navigate to medicine browsing page",
+        "Select category filter",
+        "Verify filtered results",
+        "Select status filter",
+        "Verify filtered results"
+      ]
+    },
+    {
+      "id": "TC-012",
+      "name": "User Dashboard",
+      "description": "Test user dashboard functionality",
+      "steps": [
+        "Login as USER",
+        "Navigate to /user/dashboard",
+        "Verify cart summary is displayed",
+        "Verify order count is displayed",
+        "Verify cart total is displayed",
+        "Verify recent orders are shown",
+        "Test navigation links"
+      ]
+    },
+    {
+      "id": "TC-013",
+      "name": "Protected Routes",
+      "description": "Test role-based access control",
+      "steps": [
+        "Try to access /admin/dashboard without login",
+        "Verify redirect to login",
+        "Login as USER",
+        "Try to access /admin/dashboard",
+        "Verify access denied",
+        "Login as ADMIN",
+        "Verify access granted"
+      ]
+    },
+    {
+      "id": "TC-014",
+      "name": "Cart Persistence",
+      "description": "Test cart persistence across sessions",
+      "steps": [
+        "Login as USER",
+        "Add items to cart",
+        "Logout",
+        "Login again",
+        "Navigate to cart",
+        "Verify items are still in cart"
+      ]
+    },
+    {
+      "id": "TC-015",
+      "name": "Order History",
+      "description": "Test viewing order history",
+      "steps": [
+        "Login as USER",
+        "Place an order",
+        "Navigate to orders page",
+        "Verify order appears in history",
+        "Click on order details",
+        "Verify order details are displayed"
+      ]
+    }
+  ],
+  "apiEndpoints": {
+    "auth": {
+      "register": "POST /api/auth/register",
+      "login": "POST /api/auth/login",
+      "profile": "GET /api/auth/profile"
+    },
+    "cart": {
+      "get": "GET /api/cart",
+      "add": "POST /api/cart",
+      "update": "PUT /api/cart/{id}",
+      "remove": "DELETE /api/cart/{id}",
+      "clear": "DELETE /api/cart",
+      "summary": "GET /api/cart/summary"
+    },
+    "orders": {
+      "create": "POST /api/orders",
+      "list": "GET /api/orders",
+      "details": "GET /api/orders/{id}"
+    },
+    "payment": {
+      "esewa": "POST /api/payment/esewa"
+    },
+    "reviews": {
+      "list": "GET /api/reviews/medicine/{id}",
+      "create": "POST /api/reviews",
+      "average": "GET /api/reviews/medicine/{id}/average"
+    }
+  },
+  "testData": {
+    "testMedicines": [
+      {
+        "name": "Paracetamol 500mg",
+        "category": "PAINKILLER",
+        "unitPrice": 50.00,
+        "currentStock": 1000
+      },
+      {
+        "name": "Amoxicillin 250mg",
+        "category": "ANTIBIOTIC",
+        "unitPrice": 150.00,
+        "currentStock": 500
+      }
+    ]
+  }
+}
+
+
+
