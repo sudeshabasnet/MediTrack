@@ -1,0 +1,38 @@
+{
+  "name": "meditrack-frontend",
+  "version": "1.0.0",
+  "description": "MediTrack - Medicine Stock and Distribution System Frontend",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.1.1",
+    "antd": "^6.1.3",
+    "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
+    "chart.js": "^4.4.0",
+    "dayjs": "^1.11.19",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.20.0",
+    "tailwindcss": "^3.3.6"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8",
+    "vitest": "^1.0.4"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
