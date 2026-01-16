@@ -50,6 +50,12 @@ public class PharmacyController {
             @RequestParam(required = false) Long supplierId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
+
+        if (search != null && search.trim().isEmpty())
+            search = null;
+        if (category != null && category.trim().isEmpty())
+            category = null;
+
         Pageable pageable = PageRequest.of(page, size);
         Page<Medicine> medicines = medicineRepository.searchMedicines(
                 search, category, null, supplierId, pageable);
@@ -70,6 +76,3 @@ public class PharmacyController {
         return ResponseEntity.ok(MedicineDto.fromEntity(medicine));
     }
 }
-
-
-
